@@ -36,7 +36,7 @@ export default function ProcessSection({
               onChange={(v) => setContent((p) => ({ ...p, title: v }))}
             />
           </h2>
-          <p className="text-lg leading-relaxed text-slate-600">
+          <p className="text-justify-vi text-lg leading-relaxed text-slate-600">
             <InlineField
               isEditing={isEditing}
               as="textarea"
@@ -67,7 +67,7 @@ export default function ProcessSection({
                     }
                   />
                 </h3>
-                <p className="leading-relaxed text-slate-600">
+                <p className="text-justify-vi leading-relaxed text-slate-600">
                   <InlineField
                     isEditing={isEditing}
                     as="textarea"

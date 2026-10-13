@@ -9,6 +9,11 @@ export interface HeroStat {
   label: string;
 }
 
+export interface HeroInfoItem {
+  label: string;
+  value: string;
+}
+
 export interface HeroContent {
   eventName: string;
   headline: string;
@@ -20,6 +25,7 @@ export interface HeroContent {
   badgeText: string;
   urgencyText: string;
   trustBullets: string[];
+  eventInfo: HeroInfoItem[];
   stats: HeroStat[];
   portraitImage: string;
 }
@@ -33,6 +39,10 @@ export interface BenefitsContent {
   title: string;
   subtitle: string;
   items: BenefitItem[];
+}
+
+export interface MarqueeContent {
+  phrases: string[];
 }
 
 export interface ProblemContent {
@@ -66,7 +76,10 @@ export interface ProcessContent {
 }
 
 export interface TestimonialItem {
+  headline: string;
+  highlight: string;
   quote: string;
+  insight: string;
   author: string;
   role: string;
 }
@@ -145,6 +158,7 @@ export interface FooterContent {
 export type SectionId =
   | "header"
   | "hero"
+  | "marquee"
   | "problem"
   | "benefits"
   | "audience"
@@ -161,6 +175,7 @@ export type SectionId =
 export interface AllPageContent {
   header: HeaderContent;
   hero: HeroContent;
+  marquee: MarqueeContent;
   problem: ProblemContent;
   benefits: BenefitsContent;
   audience: AudienceContent;

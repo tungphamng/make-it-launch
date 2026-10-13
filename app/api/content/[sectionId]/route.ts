@@ -6,6 +6,7 @@ import { NextResponse } from "next/server";
 const VALID_SECTIONS: SectionId[] = [
   "header",
   "hero",
+  "marquee",
   "problem",
   "benefits",
   "audience",

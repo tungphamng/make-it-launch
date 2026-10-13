@@ -21,12 +21,27 @@ export const DEFAULT_PAGE_CONTENT: AllPageContent = {
       "Khung áp dụng cho coaching, khóa học, membership",
       "Ra về với dàn ý chiến dịch, không chỉ nghe lý thuyết",
     ],
+    eventInfo: [
+      { label: "Thời gian", value: "9h sáng · Thứ 6 · 17/10" },
+      { label: "Hình thức", value: "Livestream online" },
+      { label: "Chi phí", value: "Miễn phí" },
+    ],
     stats: [
       { value: "2h", label: "Thời lượng tập trung" },
       { value: "100%", label: "Online — tham dự mọi nơi" },
       { value: "0đ", label: "Gói tham dự cơ bản" },
     ],
     portraitImage: "/hinh1.jpg",
+  },
+  marquee: {
+    phrases: [
+      "Webinar MAKE IT LAUNCH · 10X Masterminds",
+      "Biến người theo dõi thành khách hàng trả phí",
+      "Khung chiến dịch webinar — áp dụng ngay sau buổi học",
+      "Bonus tài liệu dành riêng người đăng ký",
+      "Livestream online cùng Coach Thảo Trần",
+      "Đăng ký miễn phí — suất có hạn",
+    ],
   },
   problem: {
     title: "Bạn có audience… nhưng doanh thu vẫn “đi đường vòng”?",
@@ -111,27 +126,39 @@ export const DEFAULT_PAGE_CONTENT: AllPageContent = {
     ],
   },
   socialProof: {
-    title: "Họ nói gì về cách dẫn dắt của Coach Thảo Trần?",
+    title: "Case study thực tế từ cộng đồng 10X",
     subtitle:
-      "Cộng đồng chuyên gia và creator trong hệ sinh thái 10X Masterminds — nơi nội dung gắn với chuyển đổi.",
+      "Những câu chuyện có tên, có số — chia sẻ trực tiếp từ thành viên sau khi học, kết nối và triển khai cùng Coach Thảo Trần.",
     testimonials: [
       {
+        headline: "85 triệu — bạn có dám offer?",
+        highlight: "85 triệu",
         quote:
-          "Sau workshop tôi viết được dàn ý webinar đầu tiên trong 48 giờ. Lần đầu bán khóa mà không cảm thấy “mặc cả” với audience.",
-        author: "Lan P.",
-        role: "Coach sức khỏe tinh thần",
+          "Tháng thứ 4 trong cộng đồng 10X, em chốt đơn 85 triệu với sản phẩm MADE BY ME — tự build từ A đến Z. Trước đó em tự ti, nghi ngờ; nghĩ bán giá cao như điều điên rồ, thế mà em đã tự tạo ra được.",
+        insight:
+          "Bí quyết là đi kết nối: bootcamp Nha Trang giúp em gặp đúng người, được nâng đỡ và phá giới hạn — rồi mở lòng giúp đỡ mọi người vô điều kiện.",
+        author: "Thuy Pham",
+        role: "Thành viên cộng đồng 10X",
       },
       {
+        headline: "120 triệu từ một lời giới thiệu",
+        highlight: "120 triệu",
         quote:
-          "Phần dẫn nhịp từ tò mò sang tin tưởng rất thực tế — áp dụng ngay cho buổi Zoom tuần sau, tỷ lệ giữ chân tăng rõ.",
-        author: "Minh K.",
-        role: "Creator giáo dục tài chính cá nhân",
+          "Hiền vừa có deal từ lời giới thiệu — vẫn là vị khách đầu tiên. Chỉ từ một người với đơn nhỏ ban đầu, em có thêm 3 khách và 120 triệu doanh thu từ referral.",
+        insight:
+          "Sức mạnh của điểm chạm, đàm thoại và trải nghiệm: làm tốt việc của mình, chăm khách đang có — họ sẽ mang khách tiếp theo.",
+        author: "Hiền",
+        role: "The Video Game Club",
       },
       {
+        headline: "Một tuần trong The Video Game",
+        highlight: "Video đều đặn",
         quote:
-          "Tôi thích vì không dạy chung chung: có khung, có checklist, biết offer nào nên đưa lên webinar.",
-        author: "Hương T.",
-        role: "Tư vấn kinh doanh online",
+          "Sau một tuần với chương trình chị Thảo, em tạo video ngắn và dài đều đặn hơn — trước chỉ quay khi vui, giờ vui hay mệt vẫn làm. Cộng đồng của em bắt đầu thấy em làm video dài đều — thứ họ muốn học theo.",
+        insight:
+          "Môi trường tốt + kỷ luật + công cụ lưu trữ kiến thức: không chỉ năng lượng mà cần luật chơi để đi đường dài.",
+        author: "Thanh",
+        role: "Thành viên The Video Game",
       },
     ],
   },
@@ -236,7 +263,7 @@ export const DEFAULT_PAGE_CONTENT: AllPageContent = {
   },
   footer: {
     copyright: "© 10X Masterminds · MAKE IT LAUNCH",
-    facebookLabel: "The New Rich Vietnam",
+    facebookLabel: "The New Rich",
     facebookUrl: "https://www.facebook.com/thenewrichvn",
   },
 };

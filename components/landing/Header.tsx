@@ -5,6 +5,7 @@ import { InlineField } from "@/components/ui/inline-field";
 import { MakeItLaunchTitle } from "@/components/ui/make-it-launch-title";
 import { NavLinkLuxe } from "@/components/ui/nav-link-luxe";
 import { SectionSaveBar } from "@/components/ui/section-save-bar";
+import { BRAND_LOGO_SRC } from "@/lib/constants";
 import { sentenceCase } from "@/lib/utils/format-text";
 import type { HeaderContent } from "@/types/content";
 import Image from "next/image";
@@ -43,11 +44,12 @@ export default function HeaderSection({
       <div className="container mx-auto flex items-center justify-between gap-4 px-5 py-3 md:px-4 md:py-4">
         <Link href="/" className="flex shrink-0 items-center gap-3">
           <Image
-            src="/10x_logo.png"
+            src={BRAND_LOGO_SRC}
             alt="10X Masterminds logo"
-            width={140}
+            width={40}
             height={40}
-            className="h-9 w-auto max-w-[120px] object-contain sm:h-10 sm:max-w-[140px]"
+            className="h-9 w-9 object-contain sm:h-10 sm:w-10"
+            priority
           />
           <div className="hidden leading-tight lg:block">
             {isEditing ? (

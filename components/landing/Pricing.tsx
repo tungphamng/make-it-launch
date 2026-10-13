@@ -40,7 +40,7 @@ export default function PricingSection({
               onChange={(v) => setContent((p) => ({ ...p, title: v }))}
             />
           </h2>
-          <p className="text-lg leading-relaxed text-slate-600">
+          <p className="text-justify-vi text-lg leading-relaxed text-slate-600">
             <InlineField
               isEditing={isEditing}
               as="textarea"
@@ -98,7 +98,7 @@ export default function PricingSection({
                     }
                   />
                 </p>
-                <ul className="mb-8 flex-1 space-y-3 text-sm leading-relaxed text-slate-600">
+                <ul className="mb-8 flex-1 space-y-3 text-justify-vi text-sm leading-relaxed text-slate-600">
                   {tier.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex gap-2">
                       <span className="text-[var(--color-brand-green)]">✓</span>

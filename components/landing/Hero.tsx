@@ -6,7 +6,9 @@ import { AmbientOrbs } from "@/components/ui/ambient-orbs";
 import { ImageUrlField } from "@/components/ui/image-url-field";
 import { RegisterCtaButton } from "@/components/ui/register-cta-button";
 import { SectionScrollButton } from "@/components/ui/section-scroll-button";
+import { HeroEventInfoBar } from "@/components/landing/HeroEventInfoBar";
 import { CTA_BENEFITS_HREF } from "@/lib/constants";
+import { DEFAULT_PAGE_CONTENT } from "@/lib/content/defaults";
 import type { HeroContent } from "@/types/content";
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
@@ -34,6 +36,22 @@ export default function HeroSection({ initialContent, isEditing, onSave }: HeroP
       ...prev,
       trustBullets: prev.trustBullets.map((b, i) => (i === index ? value : b)),
     }));
+  };
+
+  const eventInfo =
+    content.eventInfo?.length === 3
+      ? content.eventInfo
+      : DEFAULT_PAGE_CONTENT.hero.eventInfo;
+
+  const updateEventInfo = (index: number, patch: Partial<{ label: string; value: string }>) => {
+    setContent((prev) => {
+      const base =
+        prev.eventInfo?.length === 3 ? prev.eventInfo : DEFAULT_PAGE_CONTENT.hero.eventInfo;
+      return {
+        ...prev,
+        eventInfo: base.map((item, i) => (i === index ? { ...item, ...patch } : item)),
+      };
+    });
   };
 
   return (
@@ -104,16 +122,22 @@ export default function HeroSection({ initialContent, isEditing, onSave }: HeroP
                   inputClassName="text-base leading-relaxed"
                 />
               ) : (
-                <p className="max-w-xl text-base leading-relaxed text-white/80 md:text-lg">
+                <p className="max-w-xl text-justify-vi text-base leading-relaxed text-white/80 md:text-lg">
                   {content.subheadline}
                 </p>
               ))}
+
+            <HeroEventInfoBar
+              items={eventInfo}
+              isEditing={isEditing}
+              onChangeItem={updateEventInfo}
+            />
 
             <ul className="space-y-3 border-t border-white/15 pt-5 md:pt-6">
               {content.trustBullets.map((bullet, index) => (
                 <li
                   key={index}
-                  className="flex gap-2.5 text-sm leading-snug text-white/90 sm:text-[0.9375rem]"
+                  className="flex gap-2.5 text-justify-vi text-sm leading-snug text-white/90 sm:text-[0.9375rem]"
                 >
                   <span
                     className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-brand-gold)] text-xs font-bold text-slate-950"
@@ -145,24 +169,13 @@ export default function HeroSection({ initialContent, isEditing, onSave }: HeroP
               </SectionScrollButton>
             </div>
 
-            <p className="text-sm text-white/70">
+            <p className="text-justify-vi text-sm text-white/70">
               <InlineField
                 isEditing={isEditing}
                 value={content.urgencyText}
                 onChange={(v) => setContent((p) => ({ ...p, urgencyText: v }))}
               />
             </p>
-
-            <div className="grid grid-cols-3 gap-3 border-t border-white/15 pt-5">
-              {content.stats.map((stat, index) => (
-                <div key={index} className="text-center sm:text-left">
-                  <p className="text-2xl font-extrabold text-[var(--color-brand-gold)] sm:text-3xl">
-                    {stat.value}
-                  </p>
-                  <p className="mt-1 text-xs text-white/75 sm:text-sm">{stat.label}</p>
-                </div>
-              ))}
-            </div>
           </motion.div>
 
           <motion.div

@@ -71,7 +71,7 @@ export default function CoachSection({ initialContent, isEditing, onSave }: Coac
                 onChange={(v) => setContent((p) => ({ ...p, role: v }))}
               />
             </p>
-            <p className="leading-relaxed text-slate-600">
+            <p className="text-justify-vi leading-relaxed text-slate-600">
               <InlineField
                 isEditing={isEditing}
                 as="textarea"

@@ -1,3 +1,6 @@
+/** Logo 10X Masterminds (`public/10x-logo.png`) */
+export const BRAND_LOGO_SRC = "/10x-logo.png";
+
 /** Anchor section đăng ký — "Giữ suất tham dự" */
 export const CTA_REGISTER_HREF = "#dang-ky";
 

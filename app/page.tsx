@@ -1,4 +1,5 @@
 import LandingPageShell from "@/components/landing/LandingPageShell";
+import { BRAND_LOGO_SRC } from "@/lib/constants";
 import { getAdminSession } from "@/lib/auth/session";
 import { getAllPageContent } from "@/lib/content/fetch-content";
 import type { Metadata } from "next";
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "MAKE IT LAUNCH — 10X Masterminds",
     description:
       "Thiết kế chiến dịch bán hàng bằng webinar. Thứ 7, 17/10 — Online Zoom.",
-    images: [{ url: "/10x_logo.png", width: 800, height: 800, alt: "10X Masterminds" }],
+    images: [{ url: BRAND_LOGO_SRC, width: 800, height: 800, alt: "10X Masterminds" }],
     type: "website",
     locale: "vi_VN",
   },
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "MAKE IT LAUNCH — 10X Masterminds",
     description: "MAKE IT LAUNCH — workshop chuyển đổi follower thành khách hàng.",
-    images: ["/10x_logo.png"],
+    images: [BRAND_LOGO_SRC],
   },
   robots: { index: true, follow: true },
 };

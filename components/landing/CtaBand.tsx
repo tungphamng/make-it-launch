@@ -51,7 +51,7 @@ export default function CtaBandSection({
               onChange={(v) => setContent((p) => ({ ...p, headline: v }))}
             />
           </h2>
-          <p className="max-w-2xl text-lg leading-relaxed text-white/85">
+          <p className="max-w-2xl text-justify-vi text-lg leading-relaxed text-white/85">
             <InlineField
               isEditing={isEditing}
               as="textarea"

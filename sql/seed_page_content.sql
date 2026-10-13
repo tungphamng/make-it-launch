@@ -15,7 +15,7 @@ insert into schema_khach_hang_a.page_content (id, content) values
 ('event', '{"title":"Thông tin sự kiện","date":"Thứ 7, ngày 17/10","time":"9h00 – 11h00","location":"Online qua Zoom","note":"Link tham dự và hướng dẫn chi tiết sẽ được gửi qua email sau khi bạn đăng ký thành công."}'),
 ('lead', '{"title":"Đăng ký tham dự Webinar Master","subtitle":"Điền form bên dưới để giữ chỗ. Sau khi đăng ký, bạn sẽ nhận hướng dẫn tham gia nhóm Zalo và cập nhật quan trọng về sự kiện."}'),
 ('coach', '{"title":"Người dẫn dắt","name":"Mrs. Thảo Trần","role":"Cố vấn Hệ Thống Nội Dung Chuyển Đổi","description":"Coach Thảo Trần đồng hành cùng các chuyên gia, coach và creator xây dựng hệ thống nội dung chuyển đổi — biến lượt theo dõi thành doanh thu bền vững qua webinar và funnel bán hàng có cấu trúc.","image":"/hinh1.jpg"}'),
-('footer', '{"copyright":"© 10X Masterminds. Webinar Master Workshop.","facebookLabel":"The New Rich Vietnam","facebookUrl":"https://www.facebook.com/thenewrichvn"}')
+('footer', '{"copyright":"© 10X Masterminds. Webinar Master Workshop.","facebookLabel":"The New Rich","facebookUrl":"https://www.facebook.com/thenewrichvn"}')
 on conflict (id) do update set
   content = excluded.content,
   updated_at = timezone('utc'::text, now());

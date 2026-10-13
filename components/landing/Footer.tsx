@@ -2,6 +2,7 @@
 
 import { InlineField } from "@/components/ui/inline-field";
 import { SectionSaveBar } from "@/components/ui/section-save-bar";
+import { BRAND_LOGO_SRC } from "@/lib/constants";
 import type { FooterContent } from "@/types/content";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,17 +29,17 @@ export default function FooterSection({
   };
 
   return (
-    <footer className="w-full border-t border-white/10 bg-black py-12 text-white">
-      <div className="container mx-auto flex flex-col items-center gap-6 px-5 text-center md:px-4 md:flex-row md:justify-between md:text-left">
-        <div className="flex items-center gap-4">
+    <footer className="w-full border-t border-white/10 bg-black py-5 text-white md:py-6">
+      <div className="container mx-auto flex flex-col items-center gap-3 px-5 text-center md:flex-row md:justify-between md:gap-4 md:px-4 md:text-left">
+        <div className="flex items-center gap-3">
           <Image
-            src="/10x_logo.png"
+            src={BRAND_LOGO_SRC}
             alt="10X Masterminds"
-            width={160}
-            height={48}
-            className="h-12 w-auto max-w-[160px] object-contain"
+            width={32}
+            height={32}
+            className="h-8 w-8 object-contain"
           />
-          <p className="text-sm text-white/70">
+          <p className="text-xs text-white/70 sm:text-sm">
             <InlineField
               isEditing={isEditing}
               value={content.copyright}
@@ -50,7 +51,7 @@ export default function FooterSection({
           href={content.facebookUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-xl border border-white/20 px-5 py-2.5 text-sm font-medium transition-all duration-300 hover:scale-[1.02] hover:bg-white/10"
+          className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-3.5 py-1.5 text-xs font-medium transition-colors hover:bg-white/10 sm:text-sm sm:px-4 sm:py-2"
         >
           <span aria-hidden>f</span>
           <InlineField

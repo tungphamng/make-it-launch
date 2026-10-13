@@ -61,7 +61,7 @@ export default function EventInfoSection({
               </span>
             </div>
           ))}
-          <p className="rounded-2xl border border-dashed border-[var(--color-brand-green)]/30 bg-[var(--color-brand-green)]/5 px-6 py-4 text-center text-slate-600">
+          <p className="rounded-2xl border border-dashed border-[var(--color-brand-green)]/30 bg-[var(--color-brand-green)]/5 px-6 py-4 text-justify-vi leading-relaxed text-slate-600">
             <InlineField
               isEditing={isEditing}
               as="textarea"

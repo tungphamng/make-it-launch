@@ -12,8 +12,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-plus-jakarta), "Plus Jakarta Sans", ui-sans-serif, system-ui,
-    sans-serif;
+  --font-sans: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-oswald), "Oswald", var(--font-sans);
 }
 
 html {
@@ -24,6 +24,19 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+}
+
+/* Đoạn văn section — căn đều hai lề (tiếng Việt) */
+.text-justify-vi {
+  text-align: justify;
+  text-justify: inter-word;
+  text-wrap: pretty;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -38,6 +51,20 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-group {
+  animation: marquee-scroll 42s linear infinite;
+  will-change: transform;
 }
 
 /* —— Ambient orbs —— */
@@ -286,7 +313,7 @@ body {
 }
 
 .font-nav {
-  font-family: var(--font-nav), "Be Vietnam Pro", var(--font-sans);
+  font-family: var(--font-manrope), "Manrope", var(--font-sans);
 }
 
 .nav-link-luxe-text {

@@ -5,6 +5,7 @@ import type { AllPageContent, SectionId } from "@/types/content";
 const SECTION_IDS: SectionId[] = [
   "header",
   "hero",
+  "marquee",
   "problem",
   "benefits",
   "audience",

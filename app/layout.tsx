@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Be_Vietnam_Pro, Plus_Jakarta_Sans } from "next/font/google";
+import { Manrope, Oswald } from "next/font/google";
 import "./globals.css";
 
-const plusJakarta = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta",
-  subsets: ["vietnamese"],
+const manrope = Manrope({
+  variable: "--font-manrope",
+  subsets: ["latin", "vietnamese"],
   weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-const beVietnamPro = Be_Vietnam_Pro({
-  variable: "--font-nav",
-  subsets: ["vietnamese"],
-  weight: ["500", "600"],
+const oswald = Oswald({
+  variable: "--font-oswald",
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -30,11 +30,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="vi"
-      className={`${plusJakarta.variable} ${beVietnamPro.variable} h-full antialiased`}
+      className={`${manrope.variable} ${oswald.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body
-        className={`${plusJakarta.className} min-h-full flex flex-col font-sans`}
+        className={`${manrope.className} min-h-full flex flex-col font-sans`}
         suppressHydrationWarning
       >
         {children}

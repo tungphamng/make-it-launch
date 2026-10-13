@@ -14,7 +14,7 @@ export function MakeItLaunchTitle({
   return (
     <span
       className={cn(
-        "make-it-launch-title text-gold-shimmer inline-block uppercase",
+        "make-it-launch-title font-heading text-gold-shimmer inline-block uppercase",
         size === "hero" &&
           "text-[2.5rem] font-extrabold leading-[0.95] tracking-[0.02em] sm:text-5xl md:text-6xl lg:text-7xl",
         size === "header" &&

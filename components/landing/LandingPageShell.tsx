@@ -4,11 +4,11 @@ import AudienceSection from "@/components/landing/Audience";
 import BenefitsSection from "@/components/landing/Benefits";
 import CoachSection from "@/components/landing/Coach";
 import CtaBandSection from "@/components/landing/CtaBand";
-import EventInfoSection from "@/components/landing/EventInfo";
 import FaqSection from "@/components/landing/Faq";
 import FooterSection from "@/components/landing/Footer";
 import HeaderSection from "@/components/landing/Header";
 import HeroSection from "@/components/landing/Hero";
+import MarqueeSection from "@/components/landing/MarqueeSection";
 import LeadCaptureSection from "@/components/landing/LeadCapture";
 import PricingSection from "@/components/landing/Pricing";
 import ProblemSection from "@/components/landing/Problem";
@@ -57,6 +57,11 @@ export default function LandingPageShell({
           isEditing={isEditing}
           onSave={(content) => saveSection("hero", content)}
         />
+        <MarqueeSection
+          initialContent={initialContent.marquee}
+          isEditing={isEditing}
+          onSave={(content) => saveSection("marquee", content)}
+        />
         <SectionDivider />
         <Reveal>
           <ProblemSection
@@ -102,13 +107,6 @@ export default function LandingPageShell({
           isEditing={isEditing}
           onSave={(content) => saveSection("pricing", content)}
         />
-        <Reveal>
-          <EventInfoSection
-            initialContent={initialContent.event}
-            isEditing={isEditing}
-            onSave={(content) => saveSection("event", content)}
-          />
-        </Reveal>
         <Reveal>
           <CoachSection
             initialContent={initialContent.coach}

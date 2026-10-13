@@ -34,7 +34,7 @@ export default function FaqSection({ initialContent, isEditing, onSave }: FaqPro
               onChange={(v) => setContent((p) => ({ ...p, title: v }))}
             />
           </h2>
-          <p className="text-lg leading-relaxed text-slate-600">
+          <p className="text-justify-vi text-lg leading-relaxed text-slate-600">
             <InlineField
               isEditing={isEditing}
               as="textarea"
@@ -88,7 +88,7 @@ export default function FaqSection({ initialContent, isEditing, onSave }: FaqPro
                   )}
                 >
                   <div className="overflow-hidden">
-                    <p className="border-t border-slate-200 px-6 py-5 leading-relaxed text-slate-600">
+                    <p className="border-t border-slate-200 px-6 py-5 text-justify-vi leading-relaxed text-slate-600">
                       <InlineField
                         isEditing={isEditing}
                         as="textarea"

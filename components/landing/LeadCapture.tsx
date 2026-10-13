@@ -79,7 +79,7 @@ export default function LeadCaptureSection({
               onChange={(v) => setContent((p) => ({ ...p, title: v }))}
             />
           </h2>
-          <p className="text-lg leading-relaxed text-white/85">
+          <p className="text-justify-vi text-lg leading-relaxed text-white/85">
             <InlineField
               isEditing={isEditing}
               as="textarea"
@@ -104,7 +104,7 @@ export default function LeadCaptureSection({
                   <h3 className="text-lg font-bold tracking-tight text-white md:text-xl">
                     Thông tin thanh toán
                   </h3>
-                  <p className="mt-1.5 text-xs leading-relaxed text-white/70 md:text-sm">
+                  <p className="mt-1.5 text-justify-vi text-xs leading-relaxed text-white/70 md:text-sm">
                     <InlineField
                       isEditing={isEditing}
                       as="textarea"
@@ -180,7 +180,7 @@ export default function LeadCaptureSection({
                 </div>
 
                 <div
-                  className="mt-6 flex gap-3 rounded-xl border border-[var(--color-brand-gold)]/25 bg-[var(--color-brand-gold)]/10 px-4 py-3.5 text-sm leading-relaxed text-white/90"
+                  className="mt-6 flex gap-3 rounded-xl border border-[var(--color-brand-gold)]/25 bg-[var(--color-brand-gold)]/10 px-4 py-3.5 text-justify-vi text-sm leading-relaxed text-white/90"
                 >
                   <span
                     className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-brand-gold)]/25 text-xs text-[var(--color-brand-gold)]"
