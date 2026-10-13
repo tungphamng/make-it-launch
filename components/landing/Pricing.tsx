@@ -30,8 +30,16 @@ export default function PricingSection({
   };
 
   return (
-    <section id="goi-hoc" className="w-full bg-slate-50 py-16 md:py-24">
-      <div className="container mx-auto px-5 md:px-4">
+    <section
+      id="goi-hoc"
+      className="relative w-full overflow-hidden bg-white py-16 md:py-24"
+    >
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[var(--color-brand-green)]/10 via-[var(--color-brand-green)]/3 to-transparent"
+        aria-hidden
+      />
+      <div className="section-glow-line absolute top-0 left-0 right-0" aria-hidden />
+      <div className="container relative mx-auto px-5 md:px-4">
         <Reveal className="mx-auto mb-12 max-w-2xl space-y-4 text-center md:mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             <InlineField

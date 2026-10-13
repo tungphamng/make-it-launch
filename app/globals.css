@@ -26,17 +26,27 @@ body {
   font-family: var(--font-sans);
 }
 
-h1,
-h2,
-h3 {
-  font-family: var(--font-heading);
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Tiêu đề card / nhãn dùng Manrope (ghi đè Oswald trên h3) */
+.font-manrope {
+  font-family: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Đoạn văn section — căn đều hai lề (tiếng Việt) */
 .text-justify-vi {
+  display: block;
+  width: 100%;
   text-align: justify;
+  text-align-last: left;
   text-justify: inter-word;
-  text-wrap: pretty;
+  hyphens: manual;
 }
 
 @media (prefers-reduced-motion: reduce) {

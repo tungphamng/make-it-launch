@@ -132,6 +132,9 @@ export interface EventContent {
 export interface LeadContent {
   title: string;
   subtitle: string;
+  formBadge: string;
+  formHeadline: string;
+  formHighlight: string;
   trustNote: string;
   qrCodeImage: string;
   bankAccountName: string;

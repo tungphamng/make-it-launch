@@ -73,7 +73,7 @@ export default function BenefitsSection({
               <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-brand-green)] text-sm font-bold text-[var(--color-brand-gold)]">
                 {String(index + 1).padStart(2, "0")}
               </div>
-              <h3 className="mb-2 text-xl font-semibold text-slate-900">
+              <h3 className="mb-2 font-manrope text-xl font-semibold leading-snug text-slate-900">
                 <InlineField
                   isEditing={isEditing}
                   value={item.title}

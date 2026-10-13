@@ -20,6 +20,11 @@ export function InlineField({
   inputClassName,
 }: InlineFieldProps) {
   if (!isEditing) {
+    if (as === "textarea") {
+      return (
+        <span className={cn("whitespace-pre-wrap", className)}>{value}</span>
+      );
+    }
     return <span className={className}>{value}</span>;
   }
 

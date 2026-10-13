@@ -57,7 +57,7 @@ export const DEFAULT_PAGE_CONTENT: AllPageContent = {
       "MAKE IT LAUNCH giúp bạn dựng một chiến dịch webinar hoàn chỉnh — để mỗi lần lên sóng là một lần tiến gần hơn tới doanh thu bền vững.",
   },
   benefits: {
-    title: "Chỉ 2 giờ học — bạn ra về với “bản thiết kế” chiến dịch",
+    title: "Chỉ 2 giờ học, bạn ra về với “bản thiết kế” chiến dịch",
     subtitle:
       "Workshop thực chiến: làm theo từng bước, có ví dụ, có khung áp dụng ngay cho sản phẩm của bạn.",
     items: [
@@ -214,7 +214,7 @@ export const DEFAULT_PAGE_CONTENT: AllPageContent = {
     note: "Sau khi đăng ký, kiểm tra email (cả hộp thư quảng cáo) để nhận link và checklist chuẩn bị trước 24h.",
   },
   coach: {
-    title: "Ai sẽ dẫn dắt buổi workshop?",
+    title: "Người dẫn dắt MAKE IT LAUNCH",
     name: "Mrs. Thảo Trần",
     role: "Cố vấn Hệ Thống Nội Dung Chuyển Đổi · 10X Masterminds",
     description:
@@ -251,6 +251,10 @@ export const DEFAULT_PAGE_CONTENT: AllPageContent = {
     title: "Giữ suất tham dự MAKE IT LAUNCH",
     subtitle:
       "Điền form để giữ suất FREE. Chọn STANDARD hoặc VIP thì chuyển khoản ở mục bên dưới.",
+    formBadge: "Form đăng ký",
+    formHeadline: "Giữ chỗ MAKE IT LAUNCH",
+    formHighlight:
+      "Suất tham dự có hạn — đăng ký sớm để chắc chỗ và nhận link Zoom cùng tài liệu chuẩn bị.",
     trustNote: "Thông tin được bảo mật. Không spam — chỉ email & Zalo liên quan workshop.",
     qrCodeImage: "/QR-code1.jpg",
     bankAccountName: "CONG TY TNHH METTA LIFE",

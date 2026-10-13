@@ -6,6 +6,7 @@ import { AmbientOrbs } from "@/components/ui/ambient-orbs";
 import { InlineField } from "@/components/ui/inline-field";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionSaveBar } from "@/components/ui/section-save-bar";
+import { DEFAULT_PAGE_CONTENT } from "@/lib/content/defaults";
 import type { LeadContent } from "@/types/content";
 import Image from "next/image";
 import { useCallback, useState } from "react";
@@ -63,6 +64,10 @@ export default function LeadCaptureSection({
     await onSave(content);
     setLoading(false);
   };
+
+  const formBadge = content.formBadge ?? DEFAULT_PAGE_CONTENT.lead.formBadge;
+  const formHeadline = content.formHeadline ?? DEFAULT_PAGE_CONTENT.lead.formHeadline;
+  const formHighlight = content.formHighlight ?? DEFAULT_PAGE_CONTENT.lead.formHighlight;
 
   return (
     <section
@@ -202,6 +207,40 @@ export default function LeadCaptureSection({
           </div>
 
           <div className="order-1 rounded-3xl border border-white/20 bg-white/95 p-6 shadow-[0_25px_60px_rgba(0,0,0,0.35),0_0_50px_rgba(212,175,55,0.12)] backdrop-blur-sm md:p-10 lg:order-2">
+            <div className="mb-6 text-left">
+              <span
+                className="inline-flex rounded-full bg-[var(--color-brand-green)] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white"
+              >
+                <InlineField
+                  isEditing={isEditing}
+                  value={formBadge}
+                  onChange={(v) => setContent((p) => ({ ...p, formBadge: v }))}
+                  inputClassName="text-[10px] font-bold uppercase text-white"
+                />
+              </span>
+              <h3 className="mt-3 font-heading text-2xl font-bold uppercase leading-tight tracking-tight text-slate-900 sm:text-[1.65rem]">
+                <InlineField
+                  isEditing={isEditing}
+                  value={formHeadline}
+                  onChange={(v) => setContent((p) => ({ ...p, formHeadline: v }))}
+                  inputClassName="text-2xl font-bold uppercase sm:text-[1.65rem]"
+                />
+              </h3>
+              <p className="mt-3 flex gap-2.5 text-sm leading-relaxed text-slate-600">
+                <span
+                  className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[var(--color-brand-green)]"
+                  aria-hidden
+                />
+                <span className="text-justify-vi flex-1">
+                  <InlineField
+                    isEditing={isEditing}
+                    as="textarea"
+                    value={formHighlight}
+                    onChange={(v) => setContent((p) => ({ ...p, formHighlight: v }))}
+                  />
+                </span>
+              </p>
+            </div>
             <KitLeadForm />
             <p className="mt-4 text-center text-xs text-slate-500">
               <InlineField

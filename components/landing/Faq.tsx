@@ -43,21 +43,40 @@ export default function FaqSection({ initialContent, isEditing, onSave }: FaqPro
             />
           </p>
         </div>
-        <div className="mx-auto max-w-3xl space-y-3">
+        <div className="mx-auto max-w-3xl space-y-4">
           {content.items.map((item, index) => {
             const isOpen = openIndex === index;
             return (
               <div
                 key={index}
-                className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50"
+                className={cn(
+                  "overflow-hidden rounded-2xl border bg-white shadow-sm transition-all duration-300",
+                  isOpen
+                    ? "border-[var(--color-brand-green)]/35 shadow-[0_10px_32px_rgba(31,61,30,0.1)]"
+                    : "border-slate-200 hover:border-[var(--color-brand-green)]/20",
+                )}
               >
                 <button
                   type="button"
-                  className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-slate-900 transition-colors hover:bg-slate-100"
+                  className={cn(
+                    "flex w-full items-center gap-4 px-4 py-4 text-left transition-colors sm:px-5 sm:py-5",
+                    isOpen
+                      ? "bg-gradient-to-r from-[var(--color-brand-green)]/12 via-[var(--color-brand-green)]/5 to-white"
+                      : "bg-slate-50 hover:bg-slate-100/90",
+                  )}
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   aria-expanded={isOpen}
                 >
-                  <span className="flex-1">
+                  <span
+                    className={cn(
+                      "w-1 shrink-0 self-stretch rounded-full transition-colors",
+                      isOpen
+                        ? "bg-[var(--color-brand-gold)]"
+                        : "bg-[var(--color-brand-green)]/35",
+                    )}
+                    aria-hidden
+                  />
+                  <span className="flex-1 font-heading text-base font-bold leading-snug tracking-tight text-slate-900 sm:text-lg">
                     <InlineField
                       isEditing={isEditing}
                       value={item.question}
@@ -69,12 +88,15 @@ export default function FaqSection({ initialContent, isEditing, onSave }: FaqPro
                           ),
                         }))
                       }
+                      inputClassName="text-base font-bold sm:text-lg"
                     />
                   </span>
                   <span
                     className={cn(
-                      "text-2xl text-[var(--color-brand-green)] transition-transform duration-300",
-                      isOpen && "rotate-45",
+                      "flex h-9 w-9 shrink-0 items-center justify-center rounded-full border text-xl font-bold leading-none transition-all duration-300",
+                      isOpen
+                        ? "rotate-45 border-[var(--color-brand-gold)]/50 bg-[var(--color-brand-gold)]/15 text-[var(--color-brand-green-dark)]"
+                        : "border-[var(--color-brand-green)]/25 bg-white text-[var(--color-brand-green)]",
                     )}
                     aria-hidden
                   >
@@ -88,7 +110,7 @@ export default function FaqSection({ initialContent, isEditing, onSave }: FaqPro
                   )}
                 >
                   <div className="overflow-hidden">
-                    <p className="border-t border-slate-200 px-6 py-5 text-justify-vi leading-relaxed text-slate-600">
+                    <p className="border-t border-slate-200/80 bg-white px-5 py-5 text-justify-vi text-[0.9375rem] leading-relaxed text-slate-600 sm:px-6">
                       <InlineField
                         isEditing={isEditing}
                         as="textarea"
