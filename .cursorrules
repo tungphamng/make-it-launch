@@ -1,0 +1,242 @@
+# NEXT.JS LANDING PAGE FRAMEWORK & RULES
+
+Bạn là chuyên gia Senior Frontend và Solutions Architect chuyên về Next.js (App Router), TypeScript, Tailwind CSS và Supabase. Hãy tuân thủ nghiêm ngặt các quy tắc dưới đây khi tạo hoặc sửa đổi mã nguồn.
+
+## 1. Cấu Trúc Thư Mục Chuẩn (App Router)
+Mọi file tạo mới phải nằm đúng vị trí theo kiến trúc mô-đun sau:
+- `app/` -> Chỉ chứa định tuyến (routing) và layout. Giữ các file `page.tsx` cực kỳ gọn gàng.
+- `components/landing/` -> Chứa các khu vực (sections) lớn của Landing Page (Hero, Features, Pricing, Testimonials, Footer...).
+- `components/ui/` -> Chứa các component nguyên tử dùng chung (Button, Input, Badge...). Ưu tiên dùng Shadcn UI / Tailwind.
+- `lib/supabase/` -> Nơi khởi tạo Supabase Client cho cả Server và Client.
+- `app/api/` -> Tất cả API routes xử lý logic ngầm (Cron Jobs, Webhooks, Form xử lý).
+
+## 2. Quy Tắc Thiết Lập Supabase & Cô Lập Schema
+- Dự án này dùng chung DB Supabase nhưng chạy trên **Schema độc lập**.
+- **Tên Schema bắt buộc cho repo này:** 'schema_khach_hang_a' (Thay đổi theo từng khách hàng).
+- **Khởi tạo Client-side:** KHÔNG ĐƯỢC dùng Service Role Key. Chỉ dùng Anon Key và RLS.
+- **Khởi tạo Server-side (API/Cron/Server Actions):** Sử dụng Service Role Key để bỏ qua RLS nhưng BẮT BUỘC phải chỉ định chính xác Schema.
+
+Cấu trúc khởi tạo luôn tuân theo form này:
+```typescript
+import { createClient } from '@supabase/supabase-js';
+
+export const getSupabaseServer = () => {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    { db: { schema: 'schema_khach_hang_a' } }
+  );
+};
+```
+
+## 3. Quy Tắc Viết Code Landing Page (Component Rules)
+- **Tách biệt Sections:** Mỗi phần của Landing Page phải là một component riêng biệt nằm trong `components/landing/`. Không viết gộp toàn bộ trang vào file `app/page.tsx`.
+- **Ưu tiên Server Components:** Mặc định tất cả các thành phần giao diện là Server Components để tối ưu SEO và tốc độ tải trang ban đầu.
+- **Sử dụng 'use client' đúng chỗ:** Chỉ gắn ` 'use client' ` ở các component có tương tác người dùng (Form nhúng, Accordion FAQ, Carousel, Mobile Menu toggle).
+- **Form bên thứ 3:** Khi nhúng Form từ bên thứ ba (Tally, Typeform, v.v.), hãy bọc trong một Client Component và sử dụng cơ chế `loading='lazy'` để không làm giảm điểm Google PageSpeed Insights.
+
+## 3.1. Cấu Trúc Chuẩn Của Một Section (Landing Page Sections)
+Khi tạo mới bất kỳ một phần nào của Landing Page (Hero, Features, Testimonials...), BẮT BUỘC phải tuân thủ cấu trúc khung xương (Skeleton) sau:
+
+- **Bọc ngoài bằng thẻ ngữ nghĩa:** Luôn dùng `<section>` thay vì `<div>`.
+- **Cấu trúc ID & Padding:** Mỗi section phải có `id` viết thường (dùng cho anchor link) và khoảng cách padding-y đồng bộ (ví dụ: `py-16 md:py-24`).
+- **Khung giới hạn chiều rộng:** Bên trong `<section>` bắt buộc phải có một `<div>` bọc với class `container mx-auto px-4`.
+- **Phần đầu của Section (Header):** Gồm Tiêu đề (H2), Tiêu đề phụ (P) nằm trong một cụm căn giữa, có `max-w-2xl mx-auto text-center mb-12`.
+
+Ví dụ cấu trúc mẫu của một Section để AI tham chiếu (Luôn sinh code theo mẫu này):
+```typescript
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+
+interface SectionProps {
+  title: string;
+  subtitle?: string;
+}
+
+export default function FeaturesSection({ title, subtitle }: SectionProps) {
+  return (
+    <section id="features" className="w-full py-16 md:py-24 bg-slate-50 dark:bg-slate-900 transition-colors">
+      <div className="container mx-auto px-4">
+        {/* Section Header */}
+        <div className="max-w-2xl mx-auto text-center mb-12 md:mb-16 space-y-4">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+            {title}
+          </h2>
+          {subtitle && (
+            <p className="text-lg text-slate-600 dark:text-slate-400">
+              {subtitle}
+            </p>
+          )}
+        </div>
+
+        {/* Section Content (Grid / Flex) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Item mẫu */}
+          <div className="p-6 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+            {/* Nội dung sinh động ở đây */}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+
+## 4. Tối Ưu SEO & Hiệu Năng (Sống Còn Cho Landing Page)
+- **Metadata:** Mọi file `page.tsx` hoặc `layout.tsx` cấp cao nhất phải định nghĩa object `metadata` đầy đủ (title, description, openGraph, twitter, robots, canonical URL).
+- **Hình ảnh:** BẮT BUỘC sử dụng component `<Image />` của `next/image`. Luôn có thuộc tính `alt` mô tả chuẩn SEO, định dạng kích thước rõ ràng hoặc dùng `fill` kết hợp `sizes` để tránh Core Web Vitals bị lỗi CLS (Cumulative Layout Shift).
+- **Fonts:** Sử dụng `next/font/google` để tối ưu tải font cục bộ, tránh render chặn font (Font-display: swap).
+
+### 4.1. MULTIMODAL INPUT (POSTER & IMAGE PROCESSING)
+When the user attaches a poster or image files as input:
+1. **Extract Content:** Read all text, slogans, contact info, offers, and terms from the poster. NEVER drop any critical marketing text from the source image.
+2. **Analyze Aesthetics:** Extract the dominant color palette (Primary, Secondary, Background) from the poster and map them strictly to Tailwind CSS configurations (e.g., `bg-primary`, `text-secondary`).
+3. **Copywriting Expansion:** Use the poster's core message to expand into full-blown, high-converting Vietnamese marketing copy for sections (Problem, Benefits, FAQ) without changing the original core semantic meaning.
+4. **Image Asset Placement:** Map the attached raw images into proper placeholder locations (e.g., Hero image, product gallery) using `<Image>` components with standard responsive sizing.
+
+## 4.2. AUTOMATIC LAYOUT & AESTHETIC CHOICES (UI/UX GUARANTEE)
+When generating the layout, AI must strictly follow these structural web design principles to ensure a high-end, production-ready look instantly:
+
+- **Section Background Rhythm:** Alternating background colors between sections to create visual separation (e.g., Section 1: `bg-white`, Section 2: `bg-slate-50`, Section 3: `bg-white`). Never use pure stark backgrounds sequentially.
+- **Micro-interactions:** Add standard subtle animation triggers to all clickable elements (e.g., buttons must have `hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 duration-300`).
+- **Typography Hierarchy:** Scale header fonts strictly using tracking-tight metrics (`tracking-tight font-extrabold text-slate-900`). Paragraphs must use readable line heights (`leading-relaxed text-slate-600`).
+- **Niche-Specific Layout Blueprint:**
+  - *F&B / Spa / Beauty:* Elegant serif or clean sans-serif typography, large rounded corners (`rounded-2xl` to `rounded-3xl`), spacious paddings, fluid image grids.
+  - *SaaS / Tech / Digital Products:* High-tech grids, sharp borders (`rounded-xl`), prominent feature cards with subtle borders (`border-slate-100 dark:border-slate-800`), glowing gradient badges.
+  - *Education / Lead Gen:* Large clear headlines, high-contrast trust badges, clear form-container boundaries, focus on bulleted benefits.
+
+
+## 5. Xử Lý Lỗi & API Endpoint
+- Mọi API route trong `app/api/` phải nằm trong khối `try/catch`.
+- Phản hồi trả về luôn phải tuân theo định dạng: `NextResponse.json({ success: boolean, data?: any, error?: string }, { status: number })`.
+- Các endpoint chạy tự động (như `/api/cron/keep-alive`) bắt buộc phải kiểm tra chuỗi token bảo mật trong headers: `request.headers.get('authorization') === `Bearer ${process.env.CRON_SECRET}``.
+
+## 6. Tiêu Chuẩn TypeScript & Tailwind CSS
+- Không sử dụng kiểu dữ liệu `any`. Luôn định nghĩa Interface/Type rõ ràng cho dữ liệu đầu vào (Props).
+- Viết Tailwind CSS gọn gàng, sử dụng gói `clsx` và `tailwind-merge` (thông qua hàm tiện ích `cn(...)`) nếu cần xử lý class động dựa trên điều kiện.
+
+## 7. CẤU TRÚC INLINE CMS (EDIT CONTENT TRỰC TIẾP KHI ĐĂNG NHẬP)
+Dự án này cho phép Admin chỉnh sửa trực tiếp nội dung của bất kỳ Section nào sau khi đăng nhập. Tất cả các Section phải tuân thủ kiến trúc "Dữ liệu động" sau:
+
+- **Kiến trúc Tách biệt Content:** Không được hardcode (viết chết) chữ tiếng Việt/tiếng Anh vào giao diện. 
+- **Mẫu Dữ Liệu Đầu Vào (Props):** Mọi Section bắt buộc phải nhận một Object `content` từ cơ sở dữ liệu và một biến trạng thái `isEditing` (boolean) để biết có đang trong chế độ chỉnh sửa hay không.
+- **Thành phần chỉnh sửa (Inline Fields):** 
+  - Nếu `isEditing === true`, các đoạn text phải chuyển thành thẻ `<input>` hoặc `<textarea>` với style ẩn (no-border) để Admin sửa trực tiếp.
+  - Sử dụng hàm `onChange` để cập nhật trạng thái tạm thời của Form trước khi lưu.
+
+Ví dụ cấu trúc cấu thành của một Section có tính năng Chỉnh sửa:
+```typescript
+'use client';
+import { useState } from 'react';
+
+interface HeroContent {
+  headline: string;
+  subheadline: string;
+}
+
+interface HeroProps {
+  initialContent: HeroContent;
+  isEditing: boolean;
+  onSave: (updatedContent: HeroContent) => Promise<void>;
+}
+
+export default function HeroSection({ initialContent, isEditing, onSave }: HeroProps) {
+  const [content, setContent] = useState<HeroContent>(initialContent);
+  const [loading, setLoading] = useState(false);
+
+  const handleFieldChange = (field: keyof HeroContent, value: string) => {
+    setContent(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleSave = async () => {
+    setLoading(true);
+    await onSave(content);
+    setLoading(false);
+  };
+
+  return (
+    <section id="hero" className="py-20 bg-white">
+      <div className="container mx-auto text-center max-w-3xl space-y-6">
+        {isEditing ? (
+          <textarea
+            className="text-4xl font-extrabold w-full text-center border border-dashed border-slate-300 p-2 rounded focus:outline-none focus:border-blue-500"
+            value={content.headline}
+            onChange={(e) => handleFieldChange('headline', e.target.value)}
+          />
+        ) : (
+          <h1 className="text-4xl font-extrabold tracking-tight text-slate-950 sm:text-6xl">
+            {content.headline}
+          </h1>
+        )}
+
+        {isEditing && (
+          <button 
+            onClick={handleSave} 
+            disabled={loading}
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium"
+          >
+            {loading ? 'Đang lưu...' : 'Lưu thay đổi'}
+          </button>
+        )}
+      </div>
+    </section>
+  );
+}
+```
+
+---
+
+### Bước 2: Cấu trúc Database Table trên Supabase cho mô hình này
+
+Để lưu trữ nội dung động của tất cả các Section cho từng dự án một cách linh hoạt nhất (không cần tạo quá nhiều cột), bạn sử dụng tính năng lưu chuỗi **JSONB** của PostgreSQL. 
+
+Mỗi khi khởi tạo một Schema mới cho khách hàng mới, bạn chỉ cần chạy lệnh SQL này để tạo bảng lưu cấu hình nội dung:
+
+```sql
+-- Tạo bảng lưu nội dung cho từng Section dưới dạng JSON
+create table schema_khach_hang_a.page_content (
+  id text primary key, -- Ví dụ: 'hero', 'features', 'pricing'
+  content jsonb not null, -- Lưu toàn bộ chữ nghĩa, link ảnh dạng JSON
+  updated_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+-- Chèn dữ liệu mẫu ban đầu cho phần Hero
+insert into schema_khach_hang_a.page_content (id, content) 
+values ('hero', '{"headline": "Giải pháp đột phá cho doanh nghiệp", "subheadline": "Tăng trưởng doanh thu 30%"}');
+```
+
+---
+
+### Cách hệ thống vận hành thực tế qua Cursor:
+
+1. **Khi người dùng thường vào xem trang:** Next.js (Server Component) sẽ đứng ra đọc bảng `page_content` từ đúng Schema của khách hàng đó qua Supabase, lấy cục JSON ra và đổ vào các Section dưới dạng tĩnh. Tốc độ load trang cực nhanh và chuẩn SEO 100%.
+2. **Khi Admin đăng nhập:** Bạn làm một trang ẩn (ví dụ: `/admin` hoặc check điều kiện Session của Supabase Auth). Nếu là Admin, Next.js sẽ kích hoạt biến `isEditing = true`. Toàn bộ Landing Page lập tức biến thành một trình soạn thảo văn bản. Admin sửa đến đâu, bấm Lưu sẽ gọi API cập nhật ngược lại cục JSONB vào Supabase.
+
+<FollowUp>
+Bây giờ, bạn có muốn tôi viết sẵn **File API Route để xử lý việc cập nhật cục JSON dữ liệu này lên Supabase** và **Cấu trúc file `page.tsx` hoàn chỉnh** kết nối dữ liệu từ DB vào Section theo bộ rule Inline CMS này không?
+</FollowUp>
+
+
+## 8. QUY TRÌNH TIẾP NHẬN DỮ LIỆU ĐẦU VÀO & TỰ ĐỘNG SINH CODE (AUTOMATION WORKFLOW)
+Quy tắc này áp dụng khi User cung cấp "Dữ liệu đầu vào" (Input Data) của một khách hàng mới và yêu cầu sinh trang Landing Page. Cursor BẮT BUỘC phải tự động xử lý theo các bước sau mà không cần hỏi lại hoặc yêu cầu user mô tả thêm cấu trúc:
+
+### 8.1. Tự phân tích thông tin (AI Self-Analysis)
+Khi nhận dữ liệu đầu vào (gồm: Tên thương hiệu, Ngành nghề, Đối tượng khách hàng, Ưu điểm sản phẩm, Tone giọng mong muốn...), AI phải tự động:
+1. Xác định phối màu Tailwind CSS phù hợp với ngành nghề (Ví dụ: Công nghệ -> `blue/slate`, Thẩm mỹ/Thời trang -> `rose/zinc`, Thực phẩm/Nông nghiệp -> `emerald/amber`).
+2. Tự động biên soạn nội dung (Copywriting) chi tiết bằng tiếng Việt chuẩn marketing dựa trên thông tin thô của User để làm dữ liệu mẫu (Initial Content).
+
+### 8.2. Quy trình sinh file tự động (Code Generation Order)
+Không được viết gộp. AI phải tự động sinh mã nguồn theo đúng thứ tự sau:
+
+1. **Bước 1: Sinh dữ liệu Schema & SQL mẫu:** Tạo ngay một block mã SQL chứa cấu trúc chèn dữ liệu JSONB khởi tạo cho tất cả các Section vào bảng `page_content` thuộc Schema của khách hàng đó.
+2. **Bước 2: Tạo các file định nghĩa kiểu dữ liệu (Types):** Tạo file `types/content.ts` chứa toàn bộ Interface dữ liệu của các Section (Ví dụ: `HeroContent`, `FeaturesContent`, `PricingContent`...).
+3. **Bước 3: Sinh đồng loạt các Section Component:** Vào `components/landing/`, tự động tạo đầy đủ các file tương ứng: `Hero.tsx`, `Benefits.tsx`, `Testimonials.tsx`, `CTA.tsx`, `Footer.tsx`... 
+   - Tất cả các file này PHẢI tích hợp sẵn tính năng Inline CMS (`isEditing` và `onSave`) như quy định tại Mục 7.
+4. **Bước 4: Cấu trúc lại trang chủ (`app/page.tsx`):** Import toàn bộ các Section đã tạo, kết nối chúng với luồng lấy dữ liệu từ Supabase và cơ chế check quyền Admin để bật/tắt `isEditing`.
+
+### 8.3. Tiêu chuẩn hiển thị giao diện mặc định
+- Mọi Section sinh ra phải có giao diện hiện đại, sử dụng Flexbox/Grid chuẩn chỉnh, responsive 100% trên Mobile.
+- Các nút bấm (CTA Button) phải có hiệu ứng hover mượt mà (`transition-all duration-300`).
+- Tuyệt đối không dùng text giả (Lorem Ipsum). Mọi vị trí chữ đều phải là text có nghĩa được AI tự động biên soạn phù hợp với ngành nghề của khách hàng.
+
