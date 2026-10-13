@@ -285,14 +285,16 @@ body {
   }
 }
 
+.font-nav {
+  font-family: var(--font-nav), "Be Vietnam Pro", var(--font-sans);
+}
+
 .nav-link-luxe-text {
   text-shadow: 0 0 0 transparent;
 }
 
 .nav-link-luxe:hover .nav-link-luxe-text {
-  text-shadow:
-    0 0 12px rgba(212, 175, 55, 0.65),
-    0 0 24px rgba(212, 175, 55, 0.35);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
 }
 
 .nav-link-luxe::after {
@@ -317,7 +319,8 @@ body {
 }
 
 .nav-link-luxe:hover::after {
-  width: 85%;
+  width: 70%;
+  opacity: 0.85;
 }
 
 .nav-link-luxe-glow {
@@ -348,8 +351,7 @@ body {
 }
 
 .nav-link-luxe:hover::before {
-  opacity: 1;
-  animation: nav-shimmer-sweep 1.6s ease-in-out infinite;
+  opacity: 0.35;
 }
 
 .nav-pill-track {

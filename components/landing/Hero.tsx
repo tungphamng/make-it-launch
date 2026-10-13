@@ -47,7 +47,7 @@ export default function HeroSection({ initialContent, isEditing, onSave }: HeroP
       <div className="container relative mx-auto px-5 md:px-4">
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <motion.div
-            className="space-y-4 text-white"
+            className="space-y-5 text-white md:space-y-6"
             initial={reduceMotion ? false : { opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
@@ -109,7 +109,7 @@ export default function HeroSection({ initialContent, isEditing, onSave }: HeroP
                 </p>
               ))}
 
-            <ul className="space-y-2">
+            <ul className="space-y-3 border-t border-white/15 pt-5 md:pt-6">
               {content.trustBullets.map((bullet, index) => (
                 <li
                   key={index}
@@ -131,7 +131,7 @@ export default function HeroSection({ initialContent, isEditing, onSave }: HeroP
               ))}
             </ul>
 
-            <div className="flex flex-col gap-3 pb-4 pt-1 md:flex-row md:items-center md:pb-6">
+            <div className="flex flex-col gap-3 border-t border-white/15 pb-4 pt-5 md:flex-row md:items-center md:pb-6 md:pt-6">
               <RegisterCtaButton size="lg" variant="primary" className="w-full md:w-auto">
                 {content.ctaPrimary}
               </RegisterCtaButton>

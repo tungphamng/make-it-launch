@@ -12,9 +12,9 @@ import Link from "next/link";
 import { useState } from "react";
 
 const NAV_LINKS = [
-  { href: "#loi-ich", label: "LỢI ÍCH" },
-  { href: "#lo-trinh", label: "LỘ TRÌNH" },
-  { href: "#goi-hoc", label: "GÓI HỌC" },
+  { href: "#loi-ich", label: "Lợi ích" },
+  { href: "#lo-trinh", label: "Lộ trình" },
+  { href: "#goi-hoc", label: "Gói học" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -76,7 +76,7 @@ export default function HeaderSection({
           </div>
         </Link>
         <nav
-          className="nav-pill-track hidden items-center gap-0.5 rounded-full px-1 py-1 md:flex"
+          className="nav-pill-track hidden items-center gap-6 rounded-full px-3 py-1.5 md:flex lg:gap-8"
           aria-label="Điều hướng chính"
         >
           {NAV_LINKS.map((link) => (
