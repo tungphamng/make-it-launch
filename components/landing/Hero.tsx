@@ -3,6 +3,7 @@
 import { InlineField } from "@/components/ui/inline-field";
 import { SectionSaveBar } from "@/components/ui/section-save-bar";
 import { AmbientOrbs } from "@/components/ui/ambient-orbs";
+import { ImageUrlField } from "@/components/ui/image-url-field";
 import { RegisterCtaButton } from "@/components/ui/register-cta-button";
 import { SectionScrollButton } from "@/components/ui/section-scroll-button";
 import { CTA_BENEFITS_HREF } from "@/lib/constants";
@@ -191,6 +192,12 @@ export default function HeroSection({ initialContent, isEditing, onSave }: HeroP
                 <p className="text-xs text-white/75">10X Masterminds</p>
               </div>
             </div>
+            <ImageUrlField
+              isEditing={isEditing}
+              label="Ảnh Hero (Coach)"
+              value={content.portraitImage}
+              onChange={(v) => setContent((p) => ({ ...p, portraitImage: v }))}
+            />
           </motion.div>
         </div>
         <SectionSaveBar isEditing={isEditing} loading={loading} onSave={handleSave} />

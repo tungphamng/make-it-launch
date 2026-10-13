@@ -43,6 +43,9 @@ export async function getAllPageContent(): Promise<AllPageContent> {
   return content;
 }
 
+/** @deprecated Dùng getAdminSession() từ lib/auth/session */
 export async function getIsAdminEditing(): Promise<boolean> {
-  return process.env.ENABLE_INLINE_CMS === "true";
+  const { getAdminSession } = await import("@/lib/auth/session");
+  const { isAdmin } = await getAdminSession();
+  return isAdmin;
 }

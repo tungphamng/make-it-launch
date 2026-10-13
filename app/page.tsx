@@ -1,6 +1,10 @@
 import LandingPageShell from "@/components/landing/LandingPageShell";
-import { getAllPageContent, getIsAdminEditing } from "@/lib/content/fetch-content";
+import { getAdminSession } from "@/lib/auth/session";
+import { getAllPageContent } from "@/lib/content/fetch-content";
 import type { Metadata } from "next";
+import { connection } from "next/server";
+import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "MAKE IT LAUNCH | Workshop webinar — 10X Masterminds",
@@ -23,11 +27,46 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export default async function Home() {
-  const [content, isEditing] = await Promise.all([
-    getAllPageContent(),
-    getIsAdminEditing(),
-  ]);
+async function HomePageContent({
+  searchParams,
+}: {
+  searchParams: Promise<{ cms?: string }>;
+}) {
+  await connection();
 
-  return <LandingPageShell initialContent={content} isEditing={isEditing} />;
+  const params = await searchParams;
+  if (params.cms === "1") {
+    const { isAdmin } = await getAdminSession();
+    if (!isAdmin) {
+      redirect("/admin?next=/");
+    }
+  }
+
+  const [content, session] = await Promise.all([getAllPageContent(), getAdminSession()]);
+
+  return (
+    <LandingPageShell
+      initialContent={content}
+      isEditing={session.isAdmin}
+      adminEmail={session.email}
+    />
+  );
+}
+
+export default function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ cms?: string }>;
+}) {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-[var(--color-brand-green)] text-white/80">
+          Đang tải…
+        </div>
+      }
+    >
+      <HomePageContent searchParams={searchParams} />
+    </Suspense>
+  );
 }

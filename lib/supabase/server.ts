@@ -9,6 +9,6 @@ export function getSupabaseServer() {
   }
 
   return createClient(url, key, {
-    db: { schema: "schema_khach_hang_a" },
+    db: { schema: "make_it_launch" },
   });
 }

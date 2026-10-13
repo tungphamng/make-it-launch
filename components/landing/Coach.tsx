@@ -1,5 +1,6 @@
 "use client";
 
+import { ImageUrlField } from "@/components/ui/image-url-field";
 import { InlineField } from "@/components/ui/inline-field";
 import { SectionSaveBar } from "@/components/ui/section-save-bar";
 import type { CoachContent } from "@/types/content";
@@ -35,13 +36,21 @@ export default function CoachSection({ initialContent, isEditing, onSave }: Coac
           </h2>
         </div>
         <div className="mx-auto grid max-w-5xl items-center gap-10 lg:grid-cols-2">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
-            <Image
-              src={content.image}
-              alt={`${content.name} — ${content.role}`}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 480px"
+          <div>
+            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
+              <Image
+                src={content.image}
+                alt={`${content.name} — ${content.role}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 480px"
+              />
+            </div>
+            <ImageUrlField
+              isEditing={isEditing}
+              label="Ảnh Coach"
+              value={content.image}
+              onChange={(v) => setContent((p) => ({ ...p, image: v }))}
             />
           </div>
           <div className="space-y-4">

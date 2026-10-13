@@ -1,3 +1,4 @@
+import { requireAdminApi } from "@/lib/auth/verify-admin-api";
 import { getSupabaseServer } from "@/lib/supabase/server";
 import type { SectionId } from "@/types/content";
 import { NextResponse } from "next/server";
@@ -24,11 +25,9 @@ export async function PUT(
   context: { params: Promise<{ sectionId: string }> },
 ) {
   try {
-    if (process.env.ENABLE_INLINE_CMS !== "true") {
-      return NextResponse.json(
-        { success: false, error: "Inline CMS is disabled" },
-        { status: 403 },
-      );
+    const auth = await requireAdminApi();
+    if (!auth.ok) {
+      return auth.response;
     }
 
     const { sectionId } = await context.params;

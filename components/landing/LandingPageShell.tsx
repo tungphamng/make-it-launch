@@ -15,12 +15,14 @@ import ProblemSection from "@/components/landing/Problem";
 import ProcessSection from "@/components/landing/Process";
 import SocialProofSection from "@/components/landing/SocialProof";
 import SectionDivider from "@/components/landing/SectionDivider";
+import { AdminEditBanner } from "@/components/admin/AdminEditBanner";
 import { Reveal } from "@/components/ui/reveal";
 import type { AllPageContent, SectionId } from "@/types/content";
 
 interface LandingPageShellProps {
   initialContent: AllPageContent;
   isEditing: boolean;
+  adminEmail?: string | null;
 }
 
 async function saveSection<T>(sectionId: SectionId, content: T): Promise<void> {
@@ -39,9 +41,11 @@ async function saveSection<T>(sectionId: SectionId, content: T): Promise<void> {
 export default function LandingPageShell({
   initialContent,
   isEditing,
+  adminEmail = null,
 }: LandingPageShellProps) {
   return (
     <div className="flex min-h-full flex-col">
+      {isEditing && <AdminEditBanner email={adminEmail} />}
       <HeaderSection
         initialContent={initialContent.header}
         isEditing={isEditing}
