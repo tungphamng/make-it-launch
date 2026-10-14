@@ -219,20 +219,22 @@ export default function LeadCaptureSection({
                   inputClassName="text-2xl font-bold uppercase sm:text-[1.65rem]"
                 />
               </h3>
-              <p className="mt-3 flex gap-2.5 text-sm leading-relaxed text-slate-600">
-                <span
-                  className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[var(--color-brand-green)]"
-                  aria-hidden
-                />
-                <span className="text-justify-vi flex-1">
-                  <InlineField
-                    isEditing={isEditing}
-                    as="textarea"
-                    value={formHighlight}
-                    onChange={(v) => setContent((p) => ({ ...p, formHighlight: v }))}
+              {(isEditing || formHighlight.trim()) ? (
+                <p className="mt-3 flex gap-2.5 text-sm leading-relaxed text-slate-600">
+                  <span
+                    className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[var(--color-brand-green)]"
+                    aria-hidden
                   />
-                </span>
-              </p>
+                  <span className="text-justify-vi flex-1">
+                    <InlineField
+                      isEditing={isEditing}
+                      as="textarea"
+                      value={formHighlight}
+                      onChange={(v) => setContent((p) => ({ ...p, formHighlight: v }))}
+                    />
+                  </span>
+                </p>
+              ) : null}
             </div>
             <KitLeadForm />
           </div>

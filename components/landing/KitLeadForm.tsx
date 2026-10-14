@@ -1,13 +1,13 @@
 "use client";
 
+import LeadSuccessModal from "@/components/landing/LeadSuccessModal";
 import {
   GOOGLE_FORM_ACTION,
   GOOGLE_FORM_ENTRIES,
-  LEAD_FORM_SUCCESS_MESSAGE,
   MEMBER_10X_OPTIONS,
   PARTICIPATION_LEVEL_OPTIONS,
 } from "@/lib/google-form-lead";
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 
 const FORM_UID = "e92dae33ea";
 const IFRAME_NAME = "google-form-response-frame";
@@ -18,8 +18,19 @@ export default function KitLeadForm() {
   const [fbzx, setFbzx] = useState<string | null>(null);
   const [metaError, setMetaError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [successModalOpen, setSuccessModalOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const completeSuccess = useCallback(() => {
+    setSubmitting(false);
+    setSuccessModalOpen(true);
+    setError(null);
+  }, []);
+
+  const handleCloseSuccessModal = useCallback(() => {
+    setSuccessModalOpen(false);
+    formRef.current?.reset();
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -63,21 +74,22 @@ export default function KitLeadForm() {
     window.setTimeout(() => {
       if (!pendingIframeSubmit.current) return;
       pendingIframeSubmit.current = false;
-      setSubmitting(false);
-      setSuccess(true);
+      completeSuccess();
     }, 4000);
   }
 
   function handleIframeLoad() {
     if (!pendingIframeSubmit.current) return;
     pendingIframeSubmit.current = false;
-    setSubmitting(false);
-    setSuccess(true);
-    setError(null);
+    completeSuccess();
   }
 
   return (
     <div className="kit-form-wrapper w-full max-w-xl mx-auto">
+      <LeadSuccessModal
+        open={successModalOpen}
+        onClose={handleCloseSuccessModal}
+      />
       <iframe
         name={IFRAME_NAME}
         title="Google Form submission"
@@ -129,18 +141,11 @@ export default function KitLeadForm() {
             </ul>
           ) : null}
 
-          {success ? (
-            <div className="formkit-alert formkit-alert-success" role="status">
-              <p className="whitespace-pre-line text-left">
-                {LEAD_FORM_SUCCESS_MESSAGE}
-              </p>
-            </div>
-          ) : (
-            <div
-              data-element="fields"
-              data-stacked="true"
-              className="seva-fields formkit-fields"
-            >
+          <div
+            data-element="fields"
+            data-stacked="true"
+            className="seva-fields formkit-fields"
+          >
               <div className="formkit-field">
                 <input
                   className="formkit-input"
@@ -234,8 +239,7 @@ export default function KitLeadForm() {
                       : "Đăng ký"}
                 </span>
               </button>
-            </div>
-          )}
+          </div>
         </div>
       </form>
     </div>

@@ -253,8 +253,7 @@ export const DEFAULT_PAGE_CONTENT: AllPageContent = {
       "Điền form để giữ chỗ FREE. Chọn STANDARD hoặc VIP thì chuyển khoản ở mục bên dưới.",
     formBadge: "Form đăng ký",
     formHeadline: "Giữ chỗ MAKE IT LAUNCH",
-    formHighlight:
-      "Suất tham dự có hạn — đăng ký sớm để chắc chỗ và nhận link Zoom cùng tài liệu chuẩn bị.",
+    formHighlight: "",
     trustNote: "",
     qrCodeImage: "/QR-code1.jpg",
     bankAccountName: "CONG TY TNHH METTA LIFE",
