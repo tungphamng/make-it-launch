@@ -63,7 +63,7 @@ export default function LeadSuccessModal({ open, onClose }: LeadSuccessModalProp
           id="lead-success-title"
           className="text-center font-heading text-xl font-bold text-slate-900 sm:text-2xl"
         >
-          Đăng ký thành công!
+          Chúc mừng bạn đã đăng ký thành công!
         </h2>
         <p className="mt-4 text-left text-sm leading-relaxed text-slate-600 sm:text-base">
           {beforeLink}
