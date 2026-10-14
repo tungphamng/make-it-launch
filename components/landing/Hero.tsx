@@ -137,7 +137,7 @@ export default function HeroSection({ initialContent, isEditing, onSave }: HeroP
               {content.trustBullets.map((bullet, index) => (
                 <li
                   key={index}
-                  className="flex gap-2.5 text-justify-vi text-sm leading-snug text-white/90 sm:text-[0.9375rem]"
+                  className="flex items-start gap-2.5 text-sm leading-snug text-white/90 sm:text-[0.9375rem]"
                 >
                   <span
                     className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-brand-gold)] text-xs font-bold text-slate-950"
@@ -148,6 +148,7 @@ export default function HeroSection({ initialContent, isEditing, onSave }: HeroP
                   <InlineField
                     isEditing={isEditing}
                     as="textarea"
+                    className="min-w-0 flex-1 text-justify-vi"
                     value={bullet}
                     onChange={(v) => updateBullet(index, v)}
                   />

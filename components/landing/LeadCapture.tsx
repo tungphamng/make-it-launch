@@ -109,14 +109,6 @@ export default function LeadCaptureSection({
                   <h3 className="text-lg font-bold tracking-tight text-white md:text-xl">
                     Thông tin thanh toán
                   </h3>
-                  <p className="mt-1.5 text-justify-vi text-xs leading-relaxed text-white/70 md:text-sm">
-                    <InlineField
-                      isEditing={isEditing}
-                      as="textarea"
-                      value={content.paymentIntro}
-                      onChange={(v) => setContent((p) => ({ ...p, paymentIntro: v }))}
-                    />
-                  </p>
                 </div>
 
                 <div className="mx-auto flex w-full max-w-md flex-col items-stretch gap-6">
@@ -185,18 +177,19 @@ export default function LeadCaptureSection({
                 </div>
 
                 <div
-                  className="mt-6 flex gap-3 rounded-xl border border-[var(--color-brand-gold)]/25 bg-[var(--color-brand-gold)]/10 px-4 py-3.5 text-justify-vi text-sm leading-relaxed text-white/90"
+                  className="mt-6 flex items-start gap-3 rounded-xl border border-[var(--color-brand-gold)]/25 bg-[var(--color-brand-gold)]/10 px-4 py-3.5 text-sm leading-relaxed text-white/90"
                 >
                   <span
-                    className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-brand-gold)]/25 text-xs text-[var(--color-brand-gold)]"
+                    className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-brand-gold)]/25 text-xs font-semibold text-[var(--color-brand-gold)]"
                     aria-hidden
                   >
                     i
                   </span>
-                  <p className="text-left">
+                  <p className="min-w-0 flex-1 pt-0.5">
                     <InlineField
                       isEditing={isEditing}
                       as="textarea"
+                      className="text-justify-vi"
                       value={content.paymentNote}
                       onChange={(v) => setContent((p) => ({ ...p, paymentNote: v }))}
                     />
@@ -242,14 +235,6 @@ export default function LeadCaptureSection({
               </p>
             </div>
             <KitLeadForm />
-            <p className="mt-4 text-center text-xs text-slate-500">
-              <InlineField
-                isEditing={isEditing}
-                as="textarea"
-                value={content.trustNote}
-                onChange={(v) => setContent((p) => ({ ...p, trustNote: v }))}
-              />
-            </p>
           </div>
         </Reveal>
         <SectionSaveBar isEditing={isEditing} loading={loading} onSave={handleSave} />

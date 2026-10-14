@@ -1,16 +1,9 @@
 import type { Metadata } from "next";
-import { Manrope, Oswald } from "next/font/google";
+import { Google_Sans } from "next/font/google";
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin", "vietnamese"],
-  weight: ["400", "500", "600", "700", "800"],
-  display: "swap",
-});
-
-const oswald = Oswald({
-  variable: "--font-oswald",
+const googleSans = Google_Sans({
+  variable: "--font-google-sans",
   subsets: ["latin", "vietnamese"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
@@ -30,11 +23,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="vi"
-      className={`${manrope.variable} ${oswald.variable} h-full antialiased`}
+      className={`${googleSans.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body
-        className={`${manrope.className} min-h-full flex flex-col font-sans`}
+        className={`${googleSans.className} min-h-full flex flex-col font-sans`}
         suppressHydrationWarning
       >
         {children}

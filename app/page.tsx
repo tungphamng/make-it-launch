@@ -1,11 +1,6 @@
-import LandingPageShell from "@/components/landing/LandingPageShell";
+import { LandingPageView } from "@/components/landing/LandingPageView";
 import { BRAND_LOGO_SRC } from "@/lib/constants";
-import { getAdminSession } from "@/lib/auth/session";
-import { getAllPageContent } from "@/lib/content/fetch-content";
 import type { Metadata } from "next";
-import { connection } from "next/server";
-import { redirect } from "next/navigation";
-import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "MAKE IT LAUNCH | Workshop webinar — 10X Masterminds",
@@ -28,46 +23,10 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-async function HomePageContent({
-  searchParams,
-}: {
-  searchParams: Promise<{ cms?: string }>;
-}) {
-  await connection();
-
-  const params = await searchParams;
-  if (params.cms === "1") {
-    const { isAdmin } = await getAdminSession();
-    if (!isAdmin) {
-      redirect("/admin?next=/");
-    }
-  }
-
-  const [content, session] = await Promise.all([getAllPageContent(), getAdminSession()]);
-
-  return (
-    <LandingPageShell
-      initialContent={content}
-      isEditing={session.isAdmin}
-      adminEmail={session.email}
-    />
-  );
-}
-
 export default function Home({
   searchParams,
 }: {
   searchParams: Promise<{ cms?: string }>;
 }) {
-  return (
-    <Suspense
-      fallback={
-        <div className="flex min-h-screen items-center justify-center bg-[var(--color-brand-green)] text-white/80">
-          Đang tải…
-        </div>
-      }
-    >
-      <HomePageContent searchParams={searchParams} />
-    </Suspense>
-  );
+  return <LandingPageView searchParams={searchParams} cmsReturnPath="/" />;
 }

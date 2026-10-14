@@ -13,7 +13,7 @@ export const DEFAULT_PAGE_CONTENT: AllPageContent = {
     headlineAccent: "khách hàng trả phí",
     headlineSuffix: "qua webinar",
     subheadline: "",
-    ctaPrimary: "Đăng ký miễn phí — giữ suất",
+    ctaPrimary: "Đăng ký miễn phí — giữ chỗ",
     ctaSecondary: "Xem bạn sẽ học được gì",
     urgencyText: "Suất tham dự có giới hạn để đảm bảo tương tác trực tiếp với Coach.",
     trustBullets: [
@@ -147,7 +147,7 @@ export const DEFAULT_PAGE_CONTENT: AllPageContent = {
           "Hiền vừa có deal từ lời giới thiệu — vẫn là vị khách đầu tiên. Chỉ từ một người với đơn nhỏ ban đầu, em có thêm 3 khách và 120 triệu doanh thu từ referral.",
         insight:
           "Sức mạnh của điểm chạm, đàm thoại và trải nghiệm: làm tốt việc của mình, chăm khách đang có — họ sẽ mang khách tiếp theo.",
-        author: "Hiền",
+        author: "Hoàng Hiền",
         role: "The Video Game Club",
       },
       {
@@ -157,8 +157,8 @@ export const DEFAULT_PAGE_CONTENT: AllPageContent = {
           "Sau một tuần với chương trình chị Thảo, em tạo video ngắn và dài đều đặn hơn — trước chỉ quay khi vui, giờ vui hay mệt vẫn làm. Cộng đồng của em bắt đầu thấy em làm video dài đều — thứ họ muốn học theo.",
         insight:
           "Môi trường tốt + kỷ luật + công cụ lưu trữ kiến thức: không chỉ năng lượng mà cần luật chơi để đi đường dài.",
-        author: "Thanh",
-        role: "Thành viên The Video Game",
+        author: "Thanh Tạ",
+        role: "The Video Game Club",
       },
     ],
   },
@@ -166,7 +166,7 @@ export const DEFAULT_PAGE_CONTENT: AllPageContent = {
     headline: "Suất miễn phí — nhưng không phải ai cũng vào được phòng",
     subheadline:
       "Giữ chỗ sớm để nhận link Zoom, tài liệu chuẩn bị và hướng dẫn tham gia nhóm cập nhật trước sự kiện.",
-    buttonLabel: "Tôi muốn giữ suất",
+    buttonLabel: "Tôi muốn giữ chỗ",
   },
   pricing: {
     title: "Chọn mức tham gia phù hợp",
@@ -243,25 +243,24 @@ export const DEFAULT_PAGE_CONTENT: AllPageContent = {
       {
         question: "Có hoàn tiền nếu tôi bận không tham dự được?",
         answer:
-          "Gói FREE không thu phí. Với gói trả phí, vui lòng liên hệ support qua email trong thư xác nhận — chúng tôi hỗ trợ chuyển suất/recording theo chính sách từng gói.",
+          "Gói FREE không thu phí. Với gói trả phí, vui lòng liên hệ bộ phận hỗ trợ",
       },
     ],
   },
   lead: {
-    title: "Giữ suất tham dự MAKE IT LAUNCH",
+    title: "Giữ chỗ tham dự MAKE IT LAUNCH",
     subtitle:
-      "Điền form để giữ suất FREE. Chọn STANDARD hoặc VIP thì chuyển khoản ở mục bên dưới.",
+      "Điền form để giữ chỗ FREE. Chọn STANDARD hoặc VIP thì chuyển khoản ở mục bên dưới.",
     formBadge: "Form đăng ký",
     formHeadline: "Giữ chỗ MAKE IT LAUNCH",
     formHighlight:
       "Suất tham dự có hạn — đăng ký sớm để chắc chỗ và nhận link Zoom cùng tài liệu chuẩn bị.",
-    trustNote: "Thông tin được bảo mật. Không spam — chỉ email & Zalo liên quan workshop.",
+    trustNote: "",
     qrCodeImage: "/QR-code1.jpg",
     bankAccountName: "CONG TY TNHH METTA LIFE",
     bankAccountNumber: "555738",
     bankName: "MB Bank",
-    paymentIntro:
-      "Chỉ dùng khi chọn gói STANDARD hoặc VIP — gói FREE không cần thanh toán.",
+    paymentIntro: "",
     paymentNote:
       "Chuyển khoản theo QR hoặc STK trên, gửi ảnh bill cho Thảo Trần để xác nhận.",
   },
